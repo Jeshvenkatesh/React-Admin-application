@@ -1,36 +1,31 @@
 import React from 'react';
 import Axios from 'axios';
-import Topbar from './Topbar';
+import Topbar from './Utils/Topbar';
 import './App.css';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import Dashboard from './Dashboard';
-import Products from './Products';
-import Accounts from './Accounts';
-import Footer from './Footer';
-import Loginpage from './LoginPage';
-import Newproduct from './Newproduct';
+import Dashboard from './Dashboard/Dashboard';
+import Products from './Products/Products';
+import Accounts from './Accounts/Accounts';
+import Footer from './Footer/Footer';
+import Loginpage from './Login/LoginPage';
+import Newproduct from './Accounts/Newproduct';
+import dataAPI from "./Utils/API";
 
 class App extends React.Component {
   state = {
-    backgroundChangePos: 'null',
     data: [],
-    userLoggedIn: false
+    userLoggedIn: false,
+    selectedMenuItem: null,
   }
-  onbackgroundChange = (pos) => {
-    return (
-        // this.state.userLoggedIn === false ? null : 
-        this.setState({backgroundChangePos: pos})
-    )
+  onbackgroundChange=(pos)=>{
+      this.setState({selectedMenuItem:pos})
   }
   onUserLoggedIn = () => {
-    return (
         this.setState({userLoggedIn : !this.state.userLoggedIn})
-    )
   }
   componentDidMount() {
-    Axios.get('https://reactmusicplayer-ab9e4.firebaseio.com/project-data.json')
+    Axios.get(dataAPI)
       .then((response) => {
-        console.log(response.data);
         const data = JSON.stringify(response.data)
         localStorage.setItem("getData", data);
       })
@@ -39,13 +34,10 @@ class App extends React.Component {
       })
   }
   render() {
-  //  console.log(this.state.userLoggedIn)
-  console.log(this.state.backgroundChangePos)
-
     return (
       <BrowserRouter>
         <section>
-          <Topbar  loginStatus={this.state.userLoggedIn} onUserLoggedIn={this.onUserLoggedIn} backgroundChangePos={this.state.backgroundChangePos} onbackgroundChange={this.onbackgroundChange} />
+          <Topbar  loginStatus={this.state.userLoggedIn} onUserLoggedIn={this.onUserLoggedIn} selectedMenuItem={this.state.selectedMenuItem} onbackgroundChange={this.onbackgroundChange} />
           <Switch>
             <Route path={'/Products'} render={()=> this.state.userLoggedIn === true ? <Products/> : <Redirect to="/Login"/> } />
             <Route path={'/Accounts'} render={() => this.state.userLoggedIn === false ?  <Redirect to ='/Login'/> : <Accounts/>  } />

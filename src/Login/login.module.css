@@ -1,0 +1,76 @@
+.loginwrapper{
+    width:35%;
+    height:fit-content;
+    padding:40px;
+    box-sizing:border-box;
+    background-color:#435c70;
+    margin-left:auto;
+    margin-right:auto;
+    border-radius: 8px;
+    margin-top:90px;
+}
+.loginwrapper h3{
+    text-align:center;
+}
+.loginwrapper p{
+    margin:10px 0px;
+}
+.loginwrapper button{
+    width:100%;
+    color:white;
+    padding:8px 12px;
+    border-radius: 8px;
+    border:none;
+    outline:none;
+}
+.loginwrapper input{
+    width:100%;
+    font-size: 16px;
+    padding:8px;
+    background-color: #54657d;
+    border-radius: 8px;
+    border:none;
+    outline:none;
+    padding-left:2px;
+}
+.loginwrapper :last-child{
+    color:white;
+    margin-top:30px;
+    background-color:orange;
+}
+::-webkit-scrollbar{
+    width:6px;
+}
+::-webkit-scrollbar-track{
+    background-color: #435c70;
+}
+::-webkit-scrollbar-thumb{
+    background-color:#437299;
+
+}
+::-webkit-scrollbar-thumb:hover{
+    background-color:#5090c5;
+}
+
+@media(max-width:1200px){
+    .loginwrapper{
+        width:45%;
+    }
+}
+
+@media(max-width:992px){
+    .loginwrapper{
+        width:55%;
+    }
+}
+
+@media(max-width:768px){
+    .loginwrapper{
+        width:70%;
+    }
+}
+@media(max-width:600px){
+    .loginwrapper{
+        width:80%;
+    }
+}
